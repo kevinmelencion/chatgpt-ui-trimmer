@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "ChatGPT UI Trimmer",
+  "version": "1.0",
+  "description": "Removes old ChatGPT messages from the UI to reduce lag.",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ]
+}
