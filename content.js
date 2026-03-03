@@ -1,5 +1,9 @@
 function showToast(message) {
+  const existingToast = document.querySelector(".chatgpt-toast");
+  if (existingToast) existingToast.remove();
+
   const toast = document.createElement("div");
+  toast.classList.add("chatgpt-toast");
   toast.textContent = message;
 
   Object.assign(toast.style, {
@@ -22,11 +26,11 @@ function showToast(message) {
   }, 3000);
 }
 
-showToast("ChatGPT UI Trimmer injected successfully.");
-
 function countMessages() {
   const messages = document.querySelectorAll("div[data-message-author-role]");
   showToast("Message count: " + messages.length);
 }
+
+showToast("ChatGPT UI Trimmer injected successfully.");
 
 countMessages();
