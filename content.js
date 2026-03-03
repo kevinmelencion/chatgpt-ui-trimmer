@@ -23,3 +23,10 @@ function showToast(message) {
 }
 
 showToast("ChatGPT UI Trimmer injected successfully.");
+
+function countMessages() {
+  const messages = document.querySelectorAll("div[data-message-author-role]");
+  showToast("Message count: " + messages.length);
+}
+
+countMessages();
