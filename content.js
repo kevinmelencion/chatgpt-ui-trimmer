@@ -1,4 +1,5 @@
 function showToast(message) {
+  // Remove existing toast if present
   const existingToast = document.querySelector(".chatgpt-toast");
   if (existingToast) existingToast.remove();
 
@@ -26,11 +27,25 @@ function showToast(message) {
   }, 3000);
 }
 
-function countMessages() {
-  const messages = document.querySelectorAll("div[data-message-author-role]");
-  showToast("Message count: " + messages.length);
+// Wait for ChatGPT messages to load (React timing fix)
+function waitForMessages() {
+  const observer = new MutationObserver(() => {
+    const messages = document.querySelectorAll("div[data-message-author-role]");
+
+    if (messages.length > 0) {
+      showToast("Message count: " + messages.length);
+      observer.disconnect(); // stop observing after success
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
 }
 
+// Show injection confirmation once
 showToast("ChatGPT UI Trimmer injected successfully.");
 
+// Then wait for actual messages
 countMessages();
