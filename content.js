@@ -29,19 +29,12 @@ function showToast(message) {
 
 // Wait for ChatGPT messages to load (React timing fix)
 function waitForMessages() {
-  console.log("Observer started...");
-
-  const observer = new MutationObserver((mutations) => {
-    console.log("DOM mutation detected");
-
+  const observer = new MutationObserver(() => {
     const messages = document.querySelectorAll("div[data-message-author-role]");
-    console.log("Current message count:", messages.length);
 
     if (messages.length > 0) {
-      console.log("Messages found. Showing toast.");
       showToast("Message count: " + messages.length);
-      observer.disconnect();
-      console.log("Observer disconnected.");
+      observer.disconnect(); // stop observing after success
     }
   });
 
@@ -55,4 +48,4 @@ function waitForMessages() {
 showToast("ChatGPT UI Trimmer injected successfully.");
 
 // Then wait for actual messages
-countMessages();
+waitForMessages();
