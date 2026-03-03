@@ -1,0 +1,1 @@
+console.log("ChatGPT UI Trimmer injected successfully.");
