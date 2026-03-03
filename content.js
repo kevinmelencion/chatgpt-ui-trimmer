@@ -34,7 +34,20 @@ function waitForMessages() {
 
     if (messages.length > 0) {
       showToast("Message count: " + messages.length);
-      observer.disconnect(); // stop observing after success
+
+      //Trim logic
+      if (messages.length > 10) {
+        const numberToRemove = messages.length - 10;
+
+        for (let i = 0; i < numberToRemove; i++) {
+          messages[i].remove();
+        }
+
+        showToast("Trimmed " + numberToRemove + " old messages.");
+      } else {
+        showToast("No trimming needed.");
+      }
+      observer.disconnect(); // Stop watching after first successful trim
     }
   });
 
