@@ -42,7 +42,8 @@ This extension trims older messages to keep things snappy.
 
 ## 🗺 Roadmap / TODO
 
-- [ ] Auto-trim continuously when new messages are added
+- [x] Trim messages on conversation load
+- [x] Auto-trim continuously when new messages are added
 - [ ] Make message limit customizable via extension popup
 - [ ] Improve toast styling
 - [ ] Add performance measurement logging
