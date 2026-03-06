@@ -4,6 +4,8 @@
   "version": "1.0",
   "description": "Removes old ChatGPT messages from the UI to reduce lag.",
 
+  "permissions": ["storage"],
+
   "action": {
     "default_popup": "popup.html"
   },
