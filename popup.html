@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ChatGPT UI Trimmer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 12px;
+      width: 220px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 60px;
+      padding: 4px;
+      margin-right: 6px;
+    }
+
+    button {
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <label for="limit">Message limit</label>
+
+  <input id="limit" type="number" min="1" value="10">
+  <button id="save">Save</button>
+
+  <p id="status"></p>
+
+  <script src="popup.js"></script>
+
+</body>
+</html>

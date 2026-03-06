@@ -3,6 +3,11 @@
   "name": "ChatGPT UI Trimmer",
   "version": "1.0",
   "description": "Removes old ChatGPT messages from the UI to reduce lag.",
+
+  "action": {
+    "default_popup": "popup.html"
+  },
+
   "content_scripts": [
     {
       "matches": [
