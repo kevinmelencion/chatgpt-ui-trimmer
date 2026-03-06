@@ -1,12 +1,18 @@
+// ========================
+// Toast Notification Logic
+// ========================
+
 function showToast(message) {
-  // Remove existing toast if present
+  // Remove any existing toast so multiple notifications don't overlap
   const existingToast = document.querySelector(".chatgpt-toast");
   if (existingToast) existingToast.remove();
 
+  // Create a new toast element
   const toast = document.createElement("div");
   toast.classList.add("chatgpt-toast");
   toast.textContent = message;
 
+  // Apply inline styles for positioning and appearance
   Object.assign(toast.style, {
     position: "fixed",
     bottom: "20px",
@@ -20,19 +26,30 @@ function showToast(message) {
     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
   });
 
+  // Add toast to page
   document.body.appendChild(toast);
 
+  // Automatically remove toast after 3 seconds
   setTimeout(() => {
     toast.remove();
   }, 3000);
 }
 
+
+// ========================
+// Message Trimming Logic
+// ========================
+
 function trimMessages() {
+  // ChatGPT messages contain the attribute `data-message-author-role`
+  // We select all messages in DOM order (oldest → newest)
   const messages = document.querySelectorAll("div[data-message-author-role]");
 
+  // Only trim if more than 10 messages are present
   if (messages.length > 10) {
     const numberToRemove = messages.length - 10;
 
+    // Remove the oldest messages first
     for (let i = 0; i < numberToRemove; i++) {
       messages[i].remove();
     }
@@ -41,7 +58,15 @@ function trimMessages() {
   }
 }
 
+
+// ========================
+// DOM Observer
+// ========================
+
 function startObserver() {
+  // ChatGPT renders messages dynamically using React.
+  // We observe DOM changes so trimming happens whenever
+  // new messages appear or a conversation thread loads.
   const observer = new MutationObserver(() => {
     trimMessages();
   });
@@ -52,7 +77,13 @@ function startObserver() {
   });
 }
 
-// Show injection confirmation once
+
+// ========================
+// Extension Initialization
+// ========================
+
+// Notify that the extension has been injected
 showToast("ChatGPT UI Trimmer injected successfully.");
 
+// Start watching the page for message changes
 startObserver();
