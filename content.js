@@ -27,28 +27,23 @@ function showToast(message) {
   }, 3000);
 }
 
-// Wait for ChatGPT messages to load (React timing fix)
-function waitForMessages() {
-  const observer = new MutationObserver(() => {
-    const messages = document.querySelectorAll("div[data-message-author-role]");
+function trimMessages() {
+  const messages = document.querySelectorAll("div[data-message-author-role]");
 
-    if (messages.length > 0) {
-      showToast("Message count: " + messages.length);
+  if (messages.length > 10) {
+    const numberToRemove = messages.length - 10;
 
-      //Trim logic
-      if (messages.length > 10) {
-        const numberToRemove = messages.length - 10;
-
-        for (let i = 0; i < numberToRemove; i++) {
-          messages[i].remove();
-        }
-
-        showToast("Trimmed " + numberToRemove + " old messages.");
-      } else {
-        showToast("No trimming needed.");
-      }
-      observer.disconnect(); // Stop watching after first successful trim
+    for (let i = 0; i < numberToRemove; i++) {
+      messages[i].remove();
     }
+
+    showToast("Trimmed " + numberToRemove + " old messages.");
+  }
+}
+
+function startObserver() {
+  const observer = new MutationObserver(() => {
+    trimMessages();
   });
 
   observer.observe(document.body, {
@@ -60,5 +55,4 @@ function waitForMessages() {
 // Show injection confirmation once
 showToast("ChatGPT UI Trimmer injected successfully.");
 
-// Then wait for actual messages
-waitForMessages();
+startObserver();
