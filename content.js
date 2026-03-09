@@ -1,3 +1,11 @@
+let messageLimit = 10; // Default limit of messages to keep
+
+chrome.storage.sync.get(["messageLimit"], (result) => {
+  if (result.messageLimit) {
+    messageLimit = result.messageLimit;
+  }
+});
+
 // ========================
 // Toast Notification Logic
 // ========================
@@ -45,9 +53,9 @@ function trimMessages() {
   // We select all messages in DOM order (oldest → newest)
   const messages = document.querySelectorAll("div[data-message-author-role]");
 
-  // Only trim if more than 10 messages are present
-  if (messages.length > 10) {
-    const numberToRemove = messages.length - 10;
+  // Only trim if more than the configured message limit is present
+  if (messages.length > messageLimit) {
+    const numberToRemove = messages.length - messageLimit;
 
     // Remove the oldest messages first
     for (let i = 0; i < numberToRemove; i++) {
