@@ -2,6 +2,10 @@
 
 A lightweight browser extension that trims long ChatGPT conversations to keep the UI fast and responsive.
 
+<p align="center">
+  <img src="assets/popup.png" alt="ChatGPT UI Trimmer popup preview" width="250" />
+</p>
+
 ## 🚀 What It Does
 
 When a ChatGPT conversation loads, this extension:
@@ -34,11 +38,6 @@ This improves browser responsiveness in very long sessions by reducing DOM size.
 
 Long ChatGPT sessions can cause browser lag due to large DOM trees.  
 This extension trims older messages to keep things snappy.
-
-## ⚠️ Current Limitation
-
-- Trimming occurs only once when the conversation loads.
-- It does not continuously monitor new messages yet.
 
 ## 🗺 Roadmap / TODO
 
