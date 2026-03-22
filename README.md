@@ -44,9 +44,8 @@ This extension trims older messages to keep things snappy.
 
 - [x] Trim messages on conversation load
 - [x] Auto-trim continuously when new messages are added
-- [ ] Make message limit customizable via extension popup
-- [ ] Improve toast styling
-- [ ] Add performance measurement logging
+- [x] Make message limit customizable via extension popup
+- [x] Improve toast styling
 
 ## 🏗 Tech Used
 
