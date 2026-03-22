@@ -6,31 +6,37 @@
 
   <style>
     body {
-      font-family: sans-serif;
+      font-family: "JetBrains Mono", monospace;
       padding: 16px;
       width: 240px;
-      background: #f9fafb;
-    }
-
-    h3 {
-      margin: 0 0 12px;
-      font-size: 16px;
+      background: #111111;
+      color: #e5e7eb;
     }
 
     .container {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 14px;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .value {
-      font-size: 20px;
+      font-size: 32px;
       font-weight: bold;
       text-align: center;
+      color: #6ee7b7; /* mint accent */
     }
 
     input[type="range"] {
       width: 100%;
+      accent-color: #6ee7b7; /* mint slider */
       cursor: pointer;
     }
 
@@ -38,20 +44,22 @@
       padding: 8px;
       border: none;
       border-radius: 6px;
-      background-color: #111;
-      color: white;
+      background-color: #6ee7b7;
+      color: #111;
       cursor: pointer;
-      font-weight: 500;
+      font-weight: bold;
+      transition: transform 0.1s ease, opacity 0.1s ease;
     }
 
     button:hover {
-      background-color: #333;
+      transform: scale(1.03);
+      opacity: 0.9;
     }
 
     #status {
       font-size: 12px;
       text-align: center;
-      color: green;
+      color: #6ee7b7;
     }
   </style>
 </head>
@@ -59,7 +67,7 @@
 <body>
 
   <div class="container">
-    <h3>Message Limit</h3>
+    <h3>Messages to Keep</h3>
 
     <div id="value" class="value">10</div>
 
