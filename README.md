@@ -45,6 +45,7 @@ This extension trims older messages to keep things snappy.
 - [x] Auto-trim continuously when new messages are added
 - [x] Make message limit customizable via extension popup
 - [x] Improve toast styling
+- [ ] Fix scroll behavior after trimming so users do not scroll into empty space
 
 ## 🏗 Tech Used
 
