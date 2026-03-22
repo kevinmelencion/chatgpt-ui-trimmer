@@ -8,10 +8,19 @@ chrome.storage.sync.get(["messageLimit"], (result) => {
 
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area === "sync" && changes.messageLimit) {
-    messageLimit = changes.messageLimit.newValue;
+    const newLimit = changes.messageLimit.newValue;
+    const oldLimit = messageLimit;
 
-    showToast("Updated limit to " + messageLimit);
-    trimMessages(); // immediately re-apply trimming
+    messageLimit = newLimit;
+
+    // If user increased the limit, we cannot restore removed messages
+    if (newLimit > oldLimit) {
+      showToast("Increased limit to " + newLimit + " (refresh to restore older messages)");
+    } else {
+      showToast("Updated limit to " + newLimit);
+    }
+
+    trimMessages();
   }
 });
 
