@@ -3,39 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <title>ChatGPT UI Trimmer</title>
+
   <style>
     body {
       font-family: sans-serif;
-      padding: 12px;
-      width: 220px;
+      padding: 16px;
+      width: 240px;
+      background: #f9fafb;
     }
 
-    label {
-      display: block;
-      margin-bottom: 6px;
+    h3 {
+      margin: 0 0 12px;
+      font-size: 16px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .value {
+      font-size: 20px;
       font-weight: bold;
+      text-align: center;
     }
 
-    input {
-      width: 60px;
-      padding: 4px;
-      margin-right: 6px;
+    input[type="range"] {
+      width: 100%;
+      cursor: pointer;
     }
 
     button {
-      padding: 4px 8px;
+      padding: 8px;
+      border: none;
+      border-radius: 6px;
+      background-color: #111;
+      color: white;
       cursor: pointer;
+      font-weight: 500;
+    }
+
+    button:hover {
+      background-color: #333;
+    }
+
+    #status {
+      font-size: 12px;
+      text-align: center;
+      color: green;
     }
   </style>
 </head>
+
 <body>
 
-  <label for="limit">Message limit</label>
+  <div class="container">
+    <h3>Message Limit</h3>
 
-  <input id="limit" type="number" min="1" value="10">
-  <button id="save">Save</button>
+    <div id="value" class="value">10</div>
 
-  <p id="status"></p>
+    <input
+      id="slider"
+      type="range"
+      min="5"
+      max="50"
+      value="10"
+    >
+
+    <button id="save">Save</button>
+
+    <div id="status"></div>
+  </div>
 
   <script src="popup.js"></script>
 
