@@ -62,7 +62,7 @@ function trimMessages() {
       messages[i].remove();
     }
 
-    showToast("Trimmed " + numberToRemove + " old messages.");
+    showToast("Trimmed " + numberToRemove + " old messages (kept " + messageLimit + ").");
   }
 }
 
