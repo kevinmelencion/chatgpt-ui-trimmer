@@ -6,6 +6,15 @@ chrome.storage.sync.get(["messageLimit"], (result) => {
   }
 });
 
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === "sync" && changes.messageLimit) {
+    messageLimit = changes.messageLimit.newValue;
+
+    showToast("Updated limit to " + messageLimit);
+    trimMessages(); // immediately re-apply trimming
+  }
+});
+
 // ========================
 // Toast Notification Logic
 // ========================
